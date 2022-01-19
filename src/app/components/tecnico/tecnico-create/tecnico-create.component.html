@@ -43,11 +43,12 @@
             [formControl]="email" 
             required  
             matInput 
+            ng-reflect-is-disable
             placeholder="nome@dominio.com">
             <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
 
-        <mat-form-field class="fullWidth" appearance="legacy">
+        <mat-form-field autocomplete="off" class="fullWidth" appearance="legacy">
             <mat-label>Senha</mat-label>
             <input
             [(ngModel)]="tecnico.senha" 

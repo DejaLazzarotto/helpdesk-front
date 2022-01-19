@@ -1,9 +1,10 @@
-import { ToastrService } from 'ngx-toastr';
-import { TecnicoService } from 'src/app/services/tecnico.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Tecnico } from 'src/app/models/tecnico';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Tecnico } from 'src/app/models/tecnico';
+import { TecnicoService } from 'src/app/services/tecnico.service';
+
 
 @Component({
   selector: 'app-tecnico-update',
@@ -48,7 +49,7 @@ export class TecnicoUpdateComponent implements OnInit {
 
   update(): void {
     this.service.update(this.tecnico).subscribe(() => {
-      this.toast.success('Técnico alterado com sucesso!', 'Alteração de técnico');
+      this.toast.success('Técnico atualizado com sucesso', 'Update');
       this.router.navigate(['tecnicos'])
     }, ex => {
       if(ex.error.errors) {
@@ -61,16 +62,17 @@ export class TecnicoUpdateComponent implements OnInit {
     })
   }
 
-  addPerfil(perfil: any): void {   
+  addPerfil(perfil: any): void {
     if(this.tecnico.perfis.includes(perfil)) {
       this.tecnico.perfis.splice(this.tecnico.perfis.indexOf(perfil), 1);
     } else {
       this.tecnico.perfis.push(perfil);
     }
+    
   }
-
+  
   validaCampos(): boolean {
-    return this.nome.valid && this.cpf.valid 
+    return this.nome.valid && this.cpf.valid
      && this.email.valid && this.senha.valid
   }
 }
